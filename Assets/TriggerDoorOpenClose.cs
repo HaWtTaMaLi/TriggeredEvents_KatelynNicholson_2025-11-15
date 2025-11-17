@@ -17,4 +17,12 @@ public class TriggerDoorOpenClose : MonoBehaviour
             animatedObj.enabled = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!animatedObj.enabled)
+        {
+            animatedObj.enabled = false; //haha funny, your trapped! 
+        }
+    }
 }
