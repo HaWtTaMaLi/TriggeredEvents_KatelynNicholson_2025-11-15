@@ -1,27 +1,21 @@
 using UnityEngine;
-using UnityEngine.Playables;
+using UnityEngine.ProBuilder.Shapes;
 
 public class TriggerDoorOpenClose : MonoBehaviour
 {
 
-    public PlayableDirector timeline;
+    public Animator animatedObj;
+    public string doorTrigger = "ActivateDoor";
 
     void OnTriggerEnter(Collider other)
     {
-        timeline.Play();
+        if (other.CompareTag("Player"))
+        {
+            if (animatedObj != null)
+            {
+                animatedObj.SetTrigger("ActivateDoor");
+            }
+        }
     }
-
-    // Alternate one time trigger implementation 
-    // (trigger will self-destruct after initating timeline)
-
-    /*
-     
-    void OnTriggerEnter(Collider other)
-    {
-        timeline.Play();
-        Destroy(this.gameObject);
-    }
-
-    */
 
 }
