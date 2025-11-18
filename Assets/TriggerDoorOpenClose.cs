@@ -4,6 +4,9 @@ public class TriggerDoorOpenClose : MonoBehaviour
 {
 
     public Animator animatedObj;
+    public AudioSource openDoor;
+
+    public bool hasPlayed = false;
 
     private void Start()
     {
@@ -12,14 +15,16 @@ public class TriggerDoorOpenClose : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasPlayed)
         {
             animatedObj.enabled = true;
+            
+            if (openDoor != null )
+            {
+                openDoor.Play();
+            }
+
+            hasPlayed = true; //OneShot
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-
     }
 }

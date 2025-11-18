@@ -8,15 +8,21 @@ public class TriggerTimeLineEvents: MonoBehaviour
     [Header("Monitors")]
     public GameObject[] screens;
 
+    public bool hasPlayed = false;
+
 
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasPlayed)
         {
-            Director.Play();
-            //target object tag = Monitors
-            //setactive object tagged with Monitors 
+            
+            if(Director != null)
+            {
+                Director.Play();
+            }
+            hasPlayed = true;
+
         }
         foreach (GameObject monitor in screens)
         {
